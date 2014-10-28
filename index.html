@@ -1,1 +1,652 @@
-My Page
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic Object Model pt. 2</title>
+    <link href="css/reveal.css" rel="stylesheet" />
+    <link href="css/simple.css" rel="stylesheet" />
+    <link href="css/googlecode.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section class="center" data-background="#000">
+  <h1 class="white">
+    Basic Object Model pt. 2
+  </h1>
+</section>
+<section class="center" data-background="#000">
+  <p class="white">
+    You complained
+  </p>
+</section>
+<section class="center" data-background="#000">
+  <p class="white">
+    We listened
+  </p>
+</section>
+<section class="center">
+  <p>
+    <a href="http://coreruby.github.io">http://coreruby.github.io</a>
+  </p>
+  <p class="fragment">
+    is now
+  </p>
+  <p class="fragment">
+    <a href="http://ruby.hackbulgaria.com">http://ruby.hackbulgaria.com</a>
+  </p>
+</section>
+<section class="center" data-background="#000">
+  <p>
+    <img class="inline" src="https://avatars1.githubusercontent.com/u/8987550?v=2&amp;s=256" />
+  </p>
+</section>
+<section class="center">
+  <p>
+    There is a great definition of an <a href="http://c2.com/cgi/wiki?ObjectOriented">Object Oriented</a> system over <a href="http://c2.com/cgi/wiki?ObjectOriented">C2</a>.
+  </p>
+</section>
+<section class="center">
+  <p>
+    Did I say how awesome <a href="http://c2.com">C2</a> is?
+  </p>
+</section>
+<section class="center">
+  <p>
+    Wait, that's the same slide as last time?
+  </p>
+</section>
+<section class="center">
+  <img class="inline" src="img/troll.png" />
+</section>
+<section class="center" data-background="#000">
+  <h2 class="white">
+    Gotchas
+  </h2>
+</section>
+<section class="center">
+  <pre><code class="ruby" contenteditable="true">def make_block(&block)
+  block
+end </code></pre>
+</section>
+<section class="center">
+  <pre><code class="ruby" contenteditable="true">%w(pretty mutha fucker).map(&:upcase) </code></pre>
+</section>
+<section class="center">
+  <pre><code class="ruby" contenteditable="true">def variadic_arguments(*args)
+  args
+end
+
+variadic_arguments(1, 2, 3) != variadic_arguments([1, 2, 3]) </code></pre>
+</section>
+<section class="center" data-background="#000">
+  <h2 class="white">
+    Questions
+  </h2>
+</section>
+<section class="center">
+  <p>
+    What is Enumerable?
+  </p>
+</section>
+<section class="center">
+  <p>
+    Is String Enumerable?
+  </p>
+</section>
+<section class="center">
+  <p>
+    Can we make String Enumerable?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is a Enumerator?
+  </p>
+</section>
+<section class="center">
+  <p>
+    When do we use it?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is a proc?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is a lambda?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is the difference between proc and lambda?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is #=== used for?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is #== used for?
+  </p>
+</section>
+<section class="center">
+  <img class="inline" src="img/troll.png" />
+</section>
+<section class="center">
+  <p>
+    What is encapsulation?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is inheritance?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What kind of inheritance Ruby has?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is Polymorphism?
+  </p>
+</section>
+<section class="center">
+  <p>
+    How do we define classes in Ruby?
+  </p>
+</section>
+<section class="center">
+  <p>
+    How we instantiate an object in Ruby?
+  </p>
+</section>
+<section class="center">
+  <p>
+    How do we define instance variables in Ruby?
+  </p>
+</section>
+<section class="center">
+  <p>
+    How do we access instance variables outside of the object in Ruby?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is a private method in Ruby?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is a protected method in Ruby?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What is a module?
+  </p>
+</section>
+<section class="center">
+  <p>
+    How many modules can we include in a class?
+  </p>
+</section>
+<section class="center">
+  <p>
+    If a class and a module have the same method, which one takes precedence?
+  </p>
+</section>
+<section class="center">
+  <p>
+    What does Object#send does?
+  </p>
+</section>
+<section>
+  <h2>
+    Object#send
+  </h2>
+  <p>
+    Call any method on an object
+  </p>
+  <pre><code class="ruby">class Secret
+  private def shh
+    "Shh, its a secret"
+  end
+end
+
+Secret.new.send(:shh) #=> "Shh, its a secret" </code></pre>
+</section>
+<section>
+  <h2>
+    Object#send
+  </h2>
+  <p>
+    Call any method on an object
+  </p>
+  <pre><code class="ruby">class Secret
+  protected def shh
+    "Shh, its a secret"
+  end
+end
+
+Secret.new.send(:shh) #=> "Shh, its a secret" </code></pre>
+</section>
+<section>
+  <h2>
+    Object#public_send
+  </h2>
+  <p>
+    A bit safer, calls only public methods
+  </p>
+  <pre><code class="ruby">class Secret
+  private def shh
+    "Shh, its a secret"
+  end
+end
+
+Secret.new.public_send(:shh) #=> NoMethodError: private method `shh' called for #<Secret:0x007fd9e3917e58>` </code></pre>
+</section>
+<section>
+  <h2>
+    Object#public_send
+  </h2>
+  <p>
+    A bit safer, calls only public methods
+  </p>
+  <pre><code class="ruby">class Secret
+  protected def shh
+    "Shh, its a secret"
+  end
+end
+
+Secret.new.public_send(:shh) #=> NoMethodError: protected method `shh' called for #<Secret:0x007fd9e3917e58>` </code></pre>
+</section>
+<section>
+  <h2>
+    Object#public_send
+  </h2>
+  <p>
+    A bit safer, calls only public methods
+  </p>
+  <pre><code class="ruby">class Symbol
+  def to_proc
+    -> object, *args { object.public_send self, *args }
+  end
+end </code></pre>
+</section>
+<section>
+  <h2>
+    super
+  </h2>
+  <p>
+    Calls a base class method implementation
+  </p>
+  <pre><code class="ruby">class Person
+  def introduction_to(other)
+    "Hello #\{other}."
+  end
+end
+
+class PolitePerson < Person
+  def introduction_to(other)
+    super("Mr. #\{other}") + " How do you do?"
+  end
+end
+
+queen = PolitePerson.new
+queen.introduction_to('Smith') # "Hello Mr. Smith. How do you do?" </code></pre>
+</section>
+<section>
+  <h2>
+    super
+  </h2>
+  <p>
+    Delegates arguments if called without any
+  </p>
+  <pre><code class="ruby">class Person
+  def introduction_to(other)
+    "Hello #\{other}."
+  end
+end
+
+class PolitePerson < Person
+  def introduction_to(other)
+    super + " How do you do?"
+  end
+end
+
+queen = PolitePerson.new
+queen.introduction_to('Smith') # "Hello Mr. Smith. How do you do?" </code></pre>
+</section>
+<section>
+  <h2>
+    super
+  </h2>
+  <p>
+    Parentheses are important here
+  </p>
+  <pre><code class="ruby">class Person
+  def introduction_to(other)
+    "Hello #\{other}."
+  end
+end
+
+class PolitePerson < Person
+  def introduction_to(other)
+    super() + " How do you do?"
+  end
+end
+
+queen = PolitePerson.new
+queen.introduction_to('Smith') # error: ArgumentError </code></pre>
+</section>
+<section>
+  <h2>
+    super
+  </h2>
+  <p>
+    Parentheses are important here
+  </p>
+  <pre><code class="ruby">class Person
+  def introduction_to(other)
+    "Hello #\{other}."
+  end
+end
+
+class PolitePerson < Person
+  def introduction_to(other)
+    super + " How do you do?"
+  end
+end
+
+queen = PolitePerson.new
+queen.introduction_to('Smith') # error: ArgumentError </code></pre>
+</section>
+<section class="center" data-background="#000">
+  <h2 class="white">
+    alias
+  </h2>
+</section>
+<section>
+  <h2>
+    Object#is_a?
+  </h2>
+  <p>
+    Returns true if class is the class of obj, or if class is one of the superclasses of obj or modules included in obj.
+  </p>
+  <pre><code class="ruby">module M;    end
+class A
+  include M
+end
+class B < A; end
+class C < B; end
+
+b = B.new
+b.is_a? A          #=> true
+b.is_a? B          #=> true
+b.is_a? C          #=> false
+b.is_a? M          #=> true
+
+b.kind_of? A       #=> true
+b.kind_of? B       #=> true
+b.kind_of? C       #=> false
+b.kind_of? M       #=> true </code></pre>
+</section>
+<section>
+  <h2>
+    Object#kind_of?
+  </h2>
+  <p>
+    Returns true if class is the class of obj, or if class is one of the superclasses of obj or modules included in obj.
+  </p>
+  <pre><code class="ruby">module M;    end
+class A
+  include M
+end
+class B < A; end
+class C < B; end
+
+b = B.new
+b.is_a? A          #=> true
+b.is_a? B          #=> true
+b.is_a? C          #=> false
+b.is_a? M          #=> true
+
+b.kind_of? A       #=> true
+b.kind_of? B       #=> true
+b.kind_of? C       #=> false
+b.kind_of? M       #=> true </code></pre>
+</section>
+<section>
+  <h2>
+    Object#instance_of?
+  </h2>
+  <p>
+    Returns true if obj is an instance of the given class.
+  </p>
+  <pre><code class="ruby">class A;     end
+class B < A; end
+class C < B; end
+
+b = B.new
+b.instance_of? A   #=> false
+b.instance_of? B   #=> true
+b.instance_of? C   #=> false </code></pre>
+</section>
+<section>
+  <h2>
+    Object#respond_to?
+  </h2>
+  <p>
+    Returns true if obj responds to the given method.
+  </p>
+</section>
+<section>
+  <h2>
+    Object#respond_to?
+  </h2>
+  <Private>and protected methods are included in the search only if the optional second parameter evaluates to true.</Private>
+</section>
+<section>
+  <h2>
+    Object#respond_to?
+  </h2>
+  <p>
+    If the method is not defined, respond_to_missing? method is called and the result is returned.
+  </p>
+</section>
+<section>
+  <h2>
+    Object#respond_to?
+  </h2>
+  <p>
+    When the method name parameter is given as a string, the string is converted to a symbol.
+  </p>
+</section>
+<section>
+  <h2>
+    Object#respond_to?
+  </h2>
+  <p>
+    If the method is not implemented, as Process.fork on Windows, File.lchmod on GNU/Linux, etc., false is returned.
+  </p>
+</section>
+<section class="center" data-background="#000">
+  <h2 class="white">
+    Duck Typing
+  </h2>
+</section>
+<section>
+  <h2>
+    Duck Typing
+  </h2>
+  <p>
+    A style of typing in which an object's methods and properties determine the valid semantics.
+  </p>
+</section>
+<section>
+  <h2>
+    Duck Typing
+  </h2>
+  <p>
+    Not its inheritance from a particular class or implementation of an explicit interface.
+  </p>
+</section>
+<section class="center" data-background="#000">
+  <blockquote class="white">When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.</blockquote>
+  <p class="white">
+    James Whitcomb Riley
+  </p>
+</section>
+<section class="center">
+  <pre><code class="ruby">class Duck
+  def quack
+    puts "Quaaaaaack!"
+  end
+
+  def feathers
+    puts "The duck has white and gray feathers."
+  end
+end </code></pre>
+</section>
+<section class="center">
+  <pre><code class="ruby">class Person
+  def quack
+    puts "The person imitates a duck."
+  end
+
+  def feathers
+    puts "The person takes a feather from the ground and shows it."
+  end
+end </code></pre>
+</section>
+<section class="center">
+  <pre><code class="ruby">def in_the_forest(duck)
+  duck.quack
+  duck.feathers
+end
+
+def game
+  donald = Duck.new
+  john = Person.new
+  in_the_forest donald
+  in_the_forest john
+end
+
+game </code></pre>
+</section>
+<section class="center">
+  <pre><code class="ruby">def is_a_duck?(object)
+  object.respond_to? :quack
+end </code></pre>
+</section>
+<section class="center" data-background="#000">
+  <h2 class="white">
+    SOLID
+  </h2>
+</section>
+<section>
+  <h2>
+    SOLID
+  </h2>
+  <ul>
+    <li>
+      Single responsibility principle
+    </li>
+    <li>
+      Open/closed principle
+    </li>
+    <li>
+      Liskov substitution principle
+    </li>
+    <li>
+      Interface segregation principle
+    </li>
+    <li>
+      Dependency inversion principle
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    Single responsibility principle
+  </h2>
+  <p>
+    A class should have only a single responsibility
+  </p>
+</section>
+<section>
+  <h2>
+    Single responsibility principle
+  </h2>
+  <p>
+    Only one potential change in the software's specification should be able to affect the specification of the class
+  </p>
+</section>
+<section>
+  <h2>
+    Open/closed principle
+  </h2>
+  <p>
+    Software entities should be open for extension, but closed for modification
+  </p>
+</section>
+<section>
+  <h2>
+    Liskov substitution principle
+  </h2>
+  <p>
+    Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program
+  </p>
+</section>
+<section>
+  <h2>
+    Interface segregation principle
+  </h2>
+  <p>
+    Many client-specific interfaces are better than one general-purpose interface
+  </p>
+</section>
+<section>
+  <h2>
+    Dependency inversion principle
+  </h2>
+  <p>
+    Depend upon Abstractions, not concretions
+  </p>
+</section>
+      </div>
+    </div>
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script type="text/javascript">
+      Reveal.initialize({
+        width:  '100%',
+        height: '100%',
+        margin: 0.05,
+        controls: false,
+        progress: false,
+        history: true,
+        center: false,
+        rollingLinks: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+        dependencies: [
+          {
+            src: 'js/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.configure({ languages: ['ruby'] });
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>
